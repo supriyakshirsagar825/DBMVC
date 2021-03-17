@@ -11,7 +11,7 @@ namespace CLDataBaseLayer.DBOperations
     {
         public int AddEmployee(EmployeeModel model)
         {
-            using(var context= new CLDataBaseLayer.EmployeeDBEntities())
+            using(var context= new EmployeeDBEntities())
             {
                 tblEmployee employee = new tblEmployee()
                 {
