@@ -103,6 +103,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ModelLayer\CLModelLayer.csproj">
+      <Project>{69ded523-fa47-453c-8ab0-e0a77371c5a9}</Project>
+      <Name>CLModelLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -165,6 +166,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\Index1.cshtml" />
+    <Content Include="Views\Employee\CreateEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -187,6 +189,10 @@
     <ProjectReference Include="..\CLDataBaseLayer\CLDataBaseLayer.csproj">
       <Project>{5a1bc122-79a9-4da6-938e-2e2118c0bdd1}</Project>
       <Name>CLDataBaseLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelLayer\CLModelLayer.csproj">
+      <Project>{69ded523-fa47-453c-8ab0-e0a77371c5a9}</Project>
+      <Name>CLModelLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
