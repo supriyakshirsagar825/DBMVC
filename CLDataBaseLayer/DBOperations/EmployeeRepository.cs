@@ -11,7 +11,7 @@ namespace CLDataBaseLayer.DBOperations
     {
         public int AddEmployee(EmployeeModel model)
         {
-            using(var context= new EmployeeDBEntities())
+            using(var context= new CLDataBaseLayer.EmployeeDBEntities())
             {
                 tblEmployee employee = new tblEmployee()
                 {
@@ -30,7 +30,7 @@ namespace CLDataBaseLayer.DBOperations
                     //}
                 };
 
-                context.tblEmployees.Add(employee);
+                context.tblEmployee.Add(employee);
                 context.SaveChanges();
                 return employee.Id;
             }

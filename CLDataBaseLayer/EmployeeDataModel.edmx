@@ -62,7 +62,7 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK_tblEmployee_tblAddress" FromRole="tblAddress" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployee" Relationship="Self.FK_tblEmployee_tblAddress" FromRole="tblAddress" ToRole="tblEmployee" />
         </EntityType>
         <EntityType Name="tblEmployee">
           <Key>
@@ -89,11 +89,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EmployeeDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblAddresses" EntityType="Self.tblAddress" />
-          <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
+          <EntitySet Name="tblAddress" EntityType="Self.tblAddress" />
+          <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" />
           <AssociationSet Name="FK_tblEmployee_tblAddress" Association="Self.FK_tblEmployee_tblAddress">
-            <End Role="tblAddress" EntitySet="tblAddresses" />
-            <End Role="tblEmployee" EntitySet="tblEmployees" />
+            <End Role="tblAddress" EntitySet="tblAddress" />
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -102,7 +102,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EmployeeDBModelStoreContainer" CdmEntityContainer="EmployeeDBEntities">
-          <EntitySetMapping Name="tblAddresses">
+          <EntitySetMapping Name="tblAddress">
             <EntityTypeMapping TypeName="EmployeeDBModel.tblAddress">
               <MappingFragment StoreEntitySet="tblAddress">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -114,7 +114,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblEmployees">
+          <EntitySetMapping Name="tblEmployee">
             <EntityTypeMapping TypeName="EmployeeDBModel.tblEmployee">
               <MappingFragment StoreEntitySet="tblEmployee">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -140,7 +140,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

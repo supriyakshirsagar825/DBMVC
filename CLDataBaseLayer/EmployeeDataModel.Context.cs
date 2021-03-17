@@ -25,7 +25,7 @@ namespace CLDataBaseLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblAddress> tblAddresses { get; set; }
-        public virtual DbSet<tblEmployee> tblEmployees { get; set; }
+        public virtual DbSet<tblAddress> tblAddress { get; set; }
+        public virtual DbSet<tblEmployee> tblEmployee { get; set; }
     }
 }

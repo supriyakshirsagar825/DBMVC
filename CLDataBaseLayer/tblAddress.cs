@@ -17,7 +17,7 @@ namespace CLDataBaseLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblAddress()
         {
-            this.tblEmployees = new HashSet<tblEmployee>();
+            this.tblEmployee = new HashSet<tblEmployee>();
         }
     
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace CLDataBaseLayer
         public string Country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEmployee> tblEmployees { get; set; }
+        public virtual ICollection<tblEmployee> tblEmployee { get; set; }
     }
 }
