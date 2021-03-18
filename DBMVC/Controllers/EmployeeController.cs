@@ -16,6 +16,7 @@ namespace DBMVC.Controllers
             employeeRepository = new EmployeeRepository();
         }
         // GET: Employee
+        [HttpGet]
         public ActionResult CreateEmployee()
         {
             return View();
@@ -29,10 +30,39 @@ namespace DBMVC.Controllers
                 if(id>0)
                 {
                     ModelState.Clear();
-                    ViewBag.EmployeeMsssage = id +"Employee Added ";
+                    ViewBag.EmployeeMsssage ="Employee With Id "+ id +" Added ";
                 }
             }
             return View();
         }
+
+        public ActionResult GetAllEmployees()
+        {
+            var result = employeeRepository.GetAllEmployees();
+            return View(result);
+        }
+
+        public ActionResult GetEmployee(int Id)
+        {
+            var result = employeeRepository.GetEmployee(Id);
+            return View(result);
+        }
+        [HttpGet]
+        public ActionResult EditEmployee(int Id)
+        {
+            var result = employeeRepository.GetEmployee(Id);
+            return View(result);
+        }
+        [HttpPost]
+        public ActionResult EditEmployee(EmployeeModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                employeeRepository.UpdateEmployee(model.Id, model);
+                return RedirectToAction("GetAllEmployees");
+            }
+            return View();
+        }
+
     }
 }

@@ -167,6 +167,9 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\Index1.cshtml" />
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
+    <Content Include="Views\Employee\GetAllEmployees.cshtml" />
+    <Content Include="Views\Employee\GetEmployee.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
