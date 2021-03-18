@@ -64,5 +64,11 @@ namespace DBMVC.Controllers
             return View();
         }
 
+      
+        public ActionResult Delete(int Id)
+        {
+            employeeRepository.DeleteEmployeeByID(Id);
+            return RedirectToAction("GetAllEmployees");
+        }
     }
 }

@@ -109,5 +109,24 @@ namespace CLDataBaseLayer.DBOperations
                 return true;
             }
         }
+
+        public bool DeleteEmployeeByID(int Id)
+        {
+            using(var context= new EmployeeDBEntities())
+            {
+                var employee = context.tblEmployee.FirstOrDefault(x => x.Id == Id);
+                if(employee!=null)
+                {
+                    context.tblAddress.Remove(employee.tblAddress);
+                    context.tblEmployee.Remove(employee);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
