@@ -12,12 +12,12 @@ namespace CLDataBaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class tblAddress
+    public partial class DBAddress
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblAddress()
+        public DBAddress()
         {
-            this.tblEmployee = new HashSet<tblEmployee>();
+            this.DBEmployee = new HashSet<DBEmployee>();
         }
     
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace CLDataBaseLayer
         public string Country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEmployee> tblEmployee { get; set; }
+        public virtual ICollection<DBEmployee> DBEmployee { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace CLDataBaseLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmployeeDBEntities : DbContext
+    public partial class EmployeeDBEntities1 : DbContext
     {
-        public EmployeeDBEntities()
-            : base("name=EmployeeDBEntities")
+        public EmployeeDBEntities1()
+            : base("name=EmployeeDBEntities1")
         {
         }
     
@@ -25,7 +25,7 @@ namespace CLDataBaseLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblAddress> tblAddress { get; set; }
-        public virtual DbSet<tblEmployee> tblEmployee { get; set; }
+        public virtual DbSet<DBAddress> DBAddress { get; set; }
+        public virtual DbSet<DBEmployee> DBEmployee { get; set; }
     }
 }

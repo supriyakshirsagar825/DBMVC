@@ -12,7 +12,7 @@ namespace CLDataBaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class tblEmployee
+    public partial class DBEmployee
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -21,6 +21,6 @@ namespace CLDataBaseLayer
         public Nullable<int> AddressId { get; set; }
         public string Gender { get; set; }
     
-        public virtual tblAddress tblAddress { get; set; }
+        public virtual DBAddress DBAddress { get; set; }
     }
 }

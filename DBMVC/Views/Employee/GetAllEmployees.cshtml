@@ -42,6 +42,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Address.State)
         </th>
+        <th>
+            @Html.Hidden("ID")
+        </th>
         <th></th>
     </tr>
 
@@ -78,9 +81,12 @@
         @Html.DisplayFor(modelItem => item.Address.State)
     </td>
     <td>
+        @Html.HiddenFor(modelItem => item.Address.Id)
+    </td>
+    <td>
         @Html.ActionLink("Edit", "EditEmployee", new { id = item.Id }) |
         @Html.ActionLink("Details", "GetEmployee", new { id = item.Id }) |
-        @Html.ActionLink("Delete Emp", "Delete", new { id = item.Id })
+        @Html.ActionLink("Delete Emp", "Delete", new { id = item.Id ,addid=item.Address.Id})
     </td>
 </tr>
 }

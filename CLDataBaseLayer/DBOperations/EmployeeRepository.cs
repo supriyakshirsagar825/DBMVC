@@ -11,16 +11,16 @@ namespace CLDataBaseLayer.DBOperations
     {
         public int AddEmployee(EmployeeModel model)
         {
-            using (var context = new EmployeeDBEntities())
+            using (var context = new EmployeeDBEntities1())
             {
-                tblEmployee employee = new tblEmployee()
+                DBEmployee employee = new DBEmployee()
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Salary = model.Salary,
                     Gender = model.Gender,
-                    //AddressId = model.Address.Id,
-                    tblAddress = new tblAddress()
+                    AddressId = model.Address.Id,
+                    DBAddress = new DBAddress()
                     {
                         AddressLine1 = model.Address.AddressLine1,
                         AddressLine2 = model.Address.AddressLine2,
@@ -30,16 +30,16 @@ namespace CLDataBaseLayer.DBOperations
                     }
                 };
 
-                context.tblEmployee.Add(employee);
+                context.DBEmployee.Add(employee);
                 context.SaveChanges();
                 return employee.Id;
             }
         }
         public List<EmployeeModel> GetAllEmployees()
         {
-            using (var context = new EmployeeDBEntities())
+            using (var context = new EmployeeDBEntities1())
             {
-                var result = context.tblEmployee.Select(x => new EmployeeModel()
+                var result = context.DBEmployee.Select(x => new EmployeeModel()
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,
@@ -49,12 +49,12 @@ namespace CLDataBaseLayer.DBOperations
                     Gender = x.Gender,
                     Address = new AddressModel()
                     {
-                        Id = x.tblAddress.Id,
-                        AddressLine1 = x.tblAddress.AddressLine1,
-                        AddressLine2 = x.tblAddress.AddressLine2,
-                        City = x.tblAddress.City,
-                        Country = x.tblAddress.Country,
-                        State = x.tblAddress.State
+                        Id = x.DBAddress.Id,
+                        AddressLine1 = x.DBAddress.AddressLine1,
+                        AddressLine2 = x.DBAddress.AddressLine2,
+                        City = x.DBAddress.City,
+                        Country = x.DBAddress.Country,
+                        State = x.DBAddress.State
                     }
                 }).ToList();
                 return result;
@@ -62,9 +62,9 @@ namespace CLDataBaseLayer.DBOperations
         }
         public EmployeeModel GetEmployee(int Id)
         {
-            using (var context = new EmployeeDBEntities())
+            using (var context = new EmployeeDBEntities1())
             {
-                var result = context.tblEmployee.Select(x => new EmployeeModel()
+                var result = context.DBEmployee.Select(x => new EmployeeModel()
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,
@@ -74,12 +74,12 @@ namespace CLDataBaseLayer.DBOperations
                     Gender = x.Gender,
                     Address = new AddressModel()
                     {
-                        Id = x.tblAddress.Id,
-                        AddressLine1 = x.tblAddress.AddressLine1,
-                        AddressLine2 = x.tblAddress.AddressLine2,
-                        City = x.tblAddress.City,
-                        Country = x.tblAddress.Country,
-                        State = x.tblAddress.State
+                        Id = x.DBAddress.Id,
+                        AddressLine1 = x.DBAddress.AddressLine1,
+                        AddressLine2 = x.DBAddress.AddressLine2,
+                        City = x.DBAddress.City,
+                        Country = x.DBAddress.Country,
+                        State = x.DBAddress.State
                     }
                 }).FirstOrDefault(x=>x.Id==Id);
                 return result;
@@ -88,44 +88,65 @@ namespace CLDataBaseLayer.DBOperations
 
         public bool UpdateEmployee(int id,EmployeeModel model)
         {
-            using(var context=new EmployeeDBEntities())
+            using (var context = new EmployeeDBEntities1())
             {
-                tblEmployee emp = context.tblEmployee.FirstOrDefault(x => x.Id == id);
-                if(emp!=null)
+                var emp = new DBEmployee();//context.tblEmployee.FirstOrDefault(x => x.Id == id);
+
+                emp.Id = id;
+                emp.FirstName = model.FirstName;
+                emp.LastName = model.LastName;
+                emp.Salary = model.Salary;
+                emp.Gender = model.Gender;
+                emp.AddressId = model.AddressId;
+                emp.DBAddress = new DBAddress()
                 {
-                    emp.FirstName = model.FirstName;
-                    emp.LastName = model.LastName;
-                    emp.Salary = model.Salary;
-                    emp.Gender = model.Gender;
-                    //AddressId = model.Address.Id;
-                    emp.tblAddress.AddressLine1 = model.Address.AddressLine1;
-                    emp.tblAddress.AddressLine2 = model.Address.AddressLine2;
-                    emp.tblAddress.City = model.Address.City;
-                    emp.tblAddress.Country = model.Address.Country;
-                    emp.tblAddress.State = model.Address.State;
-                    
-                }
+
+                    Id = model.Address.Id,
+                    AddressLine1 = model.Address.AddressLine1,
+                    AddressLine2 = model.Address.AddressLine2,
+                    City = model.Address.City,
+                    Country = model.Address.Country,
+                    State = model.Address.State,
+                };
+
+                
+                context.Entry(emp.DBAddress).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(emp).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
                 return true;
             }
         }
 
-        public bool DeleteEmployeeByID(int Id)
+        public bool DeleteEmployeeByID(int Id,int addid)
         {
-            using(var context= new EmployeeDBEntities())
+            using(var context= new EmployeeDBEntities1())
             {
-                var employee = context.tblEmployee.FirstOrDefault(x => x.Id == Id);
-                if(employee!=null)
-                {
-                    context.tblAddress.Remove(employee.tblAddress);
-                    context.tblEmployee.Remove(employee);
-                    context.SaveChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                var employee = new DBEmployee();
+                employee.Id = Id;
+             
+                DBAddress add = new DBAddress();
+                add.Id = addid;
+
+
+              
+                context.Entry(employee).State = System.Data.Entity.EntityState.Deleted;
+                //context.Entry(employee.DBAddress).State = System.Data.Entity.EntityState.Deleted;
+                context.SaveChanges();
+                context.Entry(add).State = System.Data.Entity.EntityState.Deleted;
+                context.SaveChanges();
+                return true;
+                //var employee = context.tblEmployee.FirstOrDefault(x => x.Id == Id);
+                //if(employee!=null)
+                //{
+                //    context.tblAddress.Remove(employee.tblAddress);
+                //    context.tblEmployee.Remove(employee);
+                //    context.SaveChanges();
+                //    return true;
+                //}
+                //else
+                //{
+                //    return false;
+                //}
             }
         }
     }

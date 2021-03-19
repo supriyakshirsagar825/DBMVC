@@ -65,9 +65,9 @@ namespace DBMVC.Controllers
         }
 
       
-        public ActionResult Delete(int Id)
+        public ActionResult Delete(int Id,int addid)
         {
-            employeeRepository.DeleteEmployeeByID(Id);
+            employeeRepository.DeleteEmployeeByID(Id,addid);
             return RedirectToAction("GetAllEmployees");
         }
     }

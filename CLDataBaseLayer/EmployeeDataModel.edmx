@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="EmployeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="tblAddress">
+        <EntityType Name="DBAddress">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -16,7 +16,7 @@
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="tblEmployee">
+        <EntityType Name="DBEmployee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -25,26 +25,28 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Salary" Type="int" />
           <Property Name="AddressId" Type="int" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_tblEmployee_tblAddress">
-          <End Role="tblAddress" Type="Self.tblAddress" Multiplicity="0..1" />
-          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+        <Association Name="FK_DBEmployee_DBAddress">
+          <End Role="DBAddress" Type="Self.DBAddress" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DBEmployee" Type="Self.DBEmployee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblAddress">
+            <Principal Role="DBAddress">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="tblEmployee">
+            <Dependent Role="DBEmployee">
               <PropertyRef Name="AddressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EmployeeDBModelStoreContainer">
-          <EntitySet Name="tblAddress" EntityType="Self.tblAddress" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_tblEmployee_tblAddress" Association="Self.FK_tblEmployee_tblAddress">
-            <End Role="tblAddress" EntitySet="tblAddress" />
-            <End Role="tblEmployee" EntitySet="tblEmployee" />
+          <EntitySet Name="DBAddress" EntityType="Self.DBAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DBEmployee" EntityType="Self.DBEmployee" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DBEmployee_DBAddress" Association="Self.FK_DBEmployee_DBAddress">
+            <End Role="DBAddress" EntitySet="DBAddress" />
+            <End Role="DBEmployee" EntitySet="DBEmployee" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -52,7 +54,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EmployeeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="tblAddress">
+        <EntityType Name="DBAddress">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -62,9 +64,9 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblEmployee" Relationship="Self.FK_tblEmployee_tblAddress" FromRole="tblAddress" ToRole="tblEmployee" />
+          <NavigationProperty Name="DBEmployee" Relationship="Self.FK_DBEmployee_DBAddress" FromRole="DBAddress" ToRole="DBEmployee" />
         </EntityType>
-        <EntityType Name="tblEmployee">
+        <EntityType Name="DBEmployee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -73,27 +75,29 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Salary" Type="Int32" />
           <Property Name="AddressId" Type="Int32" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblAddress" Relationship="Self.FK_tblEmployee_tblAddress" FromRole="tblEmployee" ToRole="tblAddress" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DBAddress" Relationship="Self.FK_DBEmployee_DBAddress" FromRole="DBEmployee" ToRole="DBAddress" />
         </EntityType>
-        <Association Name="FK_tblEmployee_tblAddress">
-          <End Role="tblAddress" Type="Self.tblAddress" Multiplicity="0..1" />
-          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+        <Association Name="FK_DBEmployee_DBAddress">
+          <End Role="DBAddress" Type="Self.DBAddress" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DBEmployee" Type="Self.DBEmployee" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblAddress">
+            <Principal Role="DBAddress">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="tblEmployee">
+            <Dependent Role="DBEmployee">
               <PropertyRef Name="AddressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmployeeDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblAddress" EntityType="Self.tblAddress" />
-          <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" />
-          <AssociationSet Name="FK_tblEmployee_tblAddress" Association="Self.FK_tblEmployee_tblAddress">
-            <End Role="tblAddress" EntitySet="tblAddress" />
-            <End Role="tblEmployee" EntitySet="tblEmployee" />
+        <EntityContainer Name="EmployeeDBEntities11" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DBAddress" EntityType="Self.DBAddress" />
+          <EntitySet Name="DBEmployee" EntityType="Self.DBEmployee" />
+          <AssociationSet Name="FK_DBEmployee_DBAddress" Association="Self.FK_DBEmployee_DBAddress">
+            <End Role="DBAddress" EntitySet="DBAddress" />
+            <End Role="DBEmployee" EntitySet="DBEmployee" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -101,10 +105,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EmployeeDBModelStoreContainer" CdmEntityContainer="EmployeeDBEntities">
-          <EntitySetMapping Name="tblAddress">
-            <EntityTypeMapping TypeName="EmployeeDBModel.tblAddress">
-              <MappingFragment StoreEntitySet="tblAddress">
+        <EntityContainerMapping StorageEntityContainer="EmployeeDBModelStoreContainer" CdmEntityContainer="EmployeeDBEntities11">
+          <EntitySetMapping Name="DBAddress">
+            <EntityTypeMapping TypeName="EmployeeDBModel.DBAddress">
+              <MappingFragment StoreEntitySet="DBAddress">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
                 <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
@@ -114,9 +118,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblEmployee">
-            <EntityTypeMapping TypeName="EmployeeDBModel.tblEmployee">
-              <MappingFragment StoreEntitySet="tblEmployee">
+          <EntitySetMapping Name="DBEmployee">
+            <EntityTypeMapping TypeName="EmployeeDBModel.DBEmployee">
+              <MappingFragment StoreEntitySet="DBEmployee">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
