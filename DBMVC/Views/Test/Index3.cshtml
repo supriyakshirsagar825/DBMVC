@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index3</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+   
+</head>
+<body>
+    <script type="text/javascript">       
+                function btnclickfunction() {
+                    $.ajax({
+                        url: "/Test/GetEmployeeWithJson",
+                        method: "GET",
+                        success: function (data) {
+                            console.log(data);
+                            data = JSON.parse(data);
+                            console.log(data);
+                            $("#fn").text(data.FirstName);
+                            $("#ln").text(data.LastName);
+                            $("#sal").text(data.Salary);
+                        },
+                        error: function (err) {
+                            console.error(err);
+                        }
+                    });
+                }
+    </script>
+    <div>
+        <h2>firstname</h2><h2 id="fn"></h2>
+        <h2>lastname</h2><h2 id="ln"></h2>
+        <h2>salary</h2><h2 id="sal"></h2>
+
+        <input type="button" value="click1" onclick="btnclickfunction()" />
+    </div>
+</body>
+</html>
+

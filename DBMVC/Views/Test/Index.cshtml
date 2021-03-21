@@ -6,3 +6,41 @@
 <h2>Index</h2>
 
 <h4> modifying index file</h4>
+<label id="idlab1"></label>
+<input type="text" id="fn" />
+<input type="text" id="ln" />
+<input type="text" id="sal" />
+<input type="submit" value="click" onclick="f2()" />
+
+<script>
+    function f2() {
+        var fn = $("#fn").val();
+        var ln = $("#ln").val();
+        var sal = $("#sal").val();
+
+        var obj = {
+            FirstName:fn,
+            LastName:ln,
+            Salary:sal
+        }
+        submitdata(obj)
+    }
+
+   function submitdata(obj)
+   {
+       $.ajax({
+           url:"/Test/PostGetEmp",
+           method: "POST",
+           data: obj,
+           success: function (data) {
+
+           },
+           error: function (err) {
+
+           }
+
+       });
+    }
+   
+</script>
+
