@@ -123,6 +123,7 @@
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PartialViewDemoController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,6 +178,8 @@
     <Content Include="Views\Test\Index3.cshtml" />
     <Content Include="Views\Test\AjaxHelperMethod.cshtml" />
     <Content Include="Views\Demo\ListForAjaxHelper.cshtml" />
+    <Content Include="Views\PartialViewDemo\Index.cshtml" />
+    <Content Include="Views\Shared\_Card.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

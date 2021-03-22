@@ -1,0 +1,14 @@
+﻿@model CLModelLayer.EmployeeModel
+<div class="row">
+    <div class="col-lg-6">
+        <h4> Id= @Model.Id</h4>
+        <h4> Name - @Model.FirstName</h4>
+        <h4> Email- @Model.FirstName.@Model.LastName@@gmail.com</h4>
+
+    </div>
+    <div class="col-lg-6">
+        <p>
+            @Model.Address.AddressLine1 @Model.Address.AddressLine2 @Model.Address.City @Model.Address.Country @Model.Address.State
+        </p>
+    </div>
+</div>
