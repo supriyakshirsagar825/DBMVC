@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -175,6 +176,7 @@
     <Content Include="Views\Employee\EditEmployee.cshtml" />
     <Content Include="Views\Test\Index3.cshtml" />
     <Content Include="Views\Test\AjaxHelperMethod.cshtml" />
+    <Content Include="Views\Demo\ListForAjaxHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

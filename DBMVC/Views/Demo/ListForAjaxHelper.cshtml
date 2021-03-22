@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "ListForAjaxHelper";
+}
+
+<h2>ListForAjaxHelper</h2>
+
+@Ajax.ActionLink("countries", "GetCountries", new AjaxOptions()
+{ InsertionMode = InsertionMode.Replace, UpdateTargetId = "countriesdiv", LoadingElementId = "loader" , LoadingElementDuration =2000 })
+@Ajax.ActionLink("states", "GetStates", new AjaxOptions()
+{ InsertionMode = InsertionMode.Replace, UpdateTargetId = "statediv", LoadingElementId = "loader", LoadingElementDuration=2000 })
+@Ajax.ActionLink("city", "City", new AjaxOptions()
+{ InsertionMode = InsertionMode.Replace, UpdateTargetId = "citydiv", LoadingElementId = "loader", LoadingElementDuration=2000 })
+
+
+<div id="countriesdiv"> </div>
+<div id="statediv"> </div>
+<div id="citydiv"> </div>
+<div style="display:none" id="loader">
+    <img src="~/Content/Winter.gif" style="height:20px;width:30px" />
+    <img src="~/Content/Winter.gif" style="height:20px;width:30px" />
+    <img src="~/Content/Winter.gif" style="height:20px;width:30px" />
+    <img src="~/Content/Winter.gif" style="height:20px;width:30px" />
+    <img src="~/Content/Winter.gif" style="height:20px;width:30px" />
+</div>
