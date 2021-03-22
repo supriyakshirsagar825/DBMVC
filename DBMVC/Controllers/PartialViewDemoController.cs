@@ -16,6 +16,7 @@ namespace DBMVC.Controllers
         {
             repo = new EmployeeRepository();
         }
+        [OutputCache(Duration =20, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var emplist = repo.GetAllEmployees();

@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
 }
 
+<h1>@DateTime.Now</h1>
+
 @foreach (var item in Model)
 {
     Html.RenderPartial("_Card", item);
