@@ -1,0 +1,29 @@
+﻿@model CLModelLayer.EmployeeModel
+@{
+    ViewBag.Title = "AjaxHelperMethod";
+}
+
+<h2>AjaxHelperMethod</h2>
+
+@using (Ajax.BeginForm("AjaxHelperMethod", new AjaxOptions() { OnSuccess = "fn1", OnFailure = "fn2", HttpMethod = "POST" }))
+{
+    @Html.EditorFor(x => x.FirstName)
+    @Html.EditorFor(x => x.LastName)
+    @Html.EditorFor(x => x.Salary)
+
+    <input type="submit" value="Click me"  />
+}
+<script type="text/javascript">
+   
+
+    function fn1(data) {
+        alert("success alert");
+        console.log(data);
+       
+    }
+    function fn2(err) {
+        alert("failure");
+        console.error(err);
+       
+    }
+</script>

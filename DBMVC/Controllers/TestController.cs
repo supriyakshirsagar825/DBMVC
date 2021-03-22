@@ -47,5 +47,16 @@ namespace DBMVC.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult AjaxHelperMethod()
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult AjaxHelperMethod(EmployeeModel model)
+        {
+            return Json("true",JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
