@@ -4,8 +4,13 @@
 }
 
 <h2>AjaxHelperMethod</h2>
+<div style=" display:none" id="loader">
+    <img  style="height:100px;width:40px; " src="~/Content/Winter.gif" />
+    <img   style="height:100px;width:40px; " src="~/Content/Winter.gif" />
+    <img   style="height:100px;width:40px; " src="~/Content/Winter.gif" />
+</div>
 
-@using (Ajax.BeginForm("AjaxHelperMethod", new AjaxOptions() { OnSuccess = "fn1", OnFailure = "fn2", HttpMethod = "POST" }))
+@using (Ajax.BeginForm("AjaxHelperMethod", new AjaxOptions() { OnSuccess = "fn1", OnFailure = "fn2", HttpMethod = "POST" ,LoadingElementId= "loader",LoadingElementDuration=3000 }))
 {
     @Html.EditorFor(x => x.FirstName)
     @Html.EditorFor(x => x.LastName)
@@ -17,12 +22,12 @@
    
 
     function fn1(data) {
-        alert("success alert");
+       // alert("success alert");
         console.log(data);
        
     }
     function fn2(err) {
-        alert("failure");
+      //  alert("failure");
         console.error(err);
        
     }
