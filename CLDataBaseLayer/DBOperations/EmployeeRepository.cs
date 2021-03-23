@@ -9,9 +9,31 @@ namespace CLDataBaseLayer.DBOperations
 {
     public class EmployeeRepository
     {
+        public bool Login(MemberShip model)
+        {
+            using(var context= new EmployeeDBEntities11())
+            {
+               return context.User.Any(x => x.UserName == model.UserName && x.Password == model.Password);
+            }
+        }
+
+        public int SignUP(MemberShip model)
+        {
+            using(var context= new EmployeeDBEntities11())
+            {
+                User user = new User()
+                {
+                    UserName = model.UserName,
+                    Password = model.Password
+                };
+                context.User.Add(user);
+                context.SaveChanges();
+                return user.Id;
+            }
+        }
         public int AddEmployee(EmployeeModel model)
         {
-            using (var context = new EmployeeDBEntities1())
+            using (var context = new EmployeeDBEntities11())
             {
                 DBEmployee employee = new DBEmployee()
                 {
@@ -37,7 +59,7 @@ namespace CLDataBaseLayer.DBOperations
         }
         public List<EmployeeModel> GetAllEmployees()
         {
-            using (var context = new EmployeeDBEntities1())
+            using (var context = new EmployeeDBEntities11())
             {
                 var result = context.DBEmployee.Select(x => new EmployeeModel()
                 {
@@ -62,7 +84,7 @@ namespace CLDataBaseLayer.DBOperations
         }
         public EmployeeModel GetEmployee(int Id)
         {
-            using (var context = new EmployeeDBEntities1())
+            using (var context = new EmployeeDBEntities11())
             {
                 var result = context.DBEmployee.Select(x => new EmployeeModel()
                 {
@@ -88,7 +110,7 @@ namespace CLDataBaseLayer.DBOperations
 
         public bool UpdateEmployee(int id,EmployeeModel model)
         {
-            using (var context = new EmployeeDBEntities1())
+            using (var context = new EmployeeDBEntities11())
             {
                 var emp = new DBEmployee();//context.tblEmployee.FirstOrDefault(x => x.Id == id);
 
@@ -119,7 +141,7 @@ namespace CLDataBaseLayer.DBOperations
 
         public bool DeleteEmployeeByID(int Id,int addid)
         {
-            using(var context= new EmployeeDBEntities1())
+            using(var context= new EmployeeDBEntities11())
             {
                 var employee = new DBEmployee();
                 employee.Id = Id;

@@ -13,10 +13,10 @@ namespace CLDataBaseLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmployeeDBEntities1 : DbContext
+    public partial class EmployeeDBEntities11 : DbContext
     {
-        public EmployeeDBEntities1()
-            : base("name=EmployeeDBEntities1")
+        public EmployeeDBEntities11()
+            : base("name=EmployeeDBEntities11")
         {
         }
     
@@ -27,5 +27,6 @@ namespace CLDataBaseLayer
     
         public virtual DbSet<DBAddress> DBAddress { get; set; }
         public virtual DbSet<DBEmployee> DBEmployee { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

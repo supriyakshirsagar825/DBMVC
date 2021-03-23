@@ -8,6 +8,7 @@ using CLDataBaseLayer.DBOperations;
 
 namespace DBMVC.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         EmployeeRepository employeeRepository = null;
