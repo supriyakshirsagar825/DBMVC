@@ -8,7 +8,7 @@ using CLDataBaseLayer.DBOperations;
 
 namespace DBMVC.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class EmployeeController : Controller
     {
         EmployeeRepository employeeRepository = null;
@@ -17,11 +17,13 @@ namespace DBMVC.Controllers
             employeeRepository = new EmployeeRepository();
         }
         // GET: Employee
+        [Authorize(Roles ="admin , user")]
         [HttpGet]
         public ActionResult CreateEmployee()
         {
             return View();
         }
+        [Authorize(Roles = "admin , user")]
         [HttpPost]
         public ActionResult CreateEmployee(EmployeeModel model)
         {
@@ -48,12 +50,14 @@ namespace DBMVC.Controllers
             var result = employeeRepository.GetEmployee(Id);
             return View(result);
         }
+        [Authorize(Roles ="user")]
         [HttpGet]
         public ActionResult EditEmployee(int Id)
         {
             var result = employeeRepository.GetEmployee(Id);
             return View(result);
         }
+        [Authorize(Roles = "user")]
         [HttpPost]
         public ActionResult EditEmployee(EmployeeModel model)
         {
@@ -65,7 +69,7 @@ namespace DBMVC.Controllers
             return View();
         }
 
-      
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int Id,int addid)
         {
             employeeRepository.DeleteEmployeeByID(Id,addid);

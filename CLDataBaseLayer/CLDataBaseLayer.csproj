@@ -80,6 +80,9 @@
       <DependentUpon>EmployeeDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>EmployeeDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>EmployeeDataModel.tt</DependentUpon>
     </Compile>

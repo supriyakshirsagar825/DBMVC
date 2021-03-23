@@ -9,6 +9,18 @@ namespace CLDataBaseLayer.DBOperations
 {
     public class EmployeeRepository
     {
+        public  string[] GetRolesForUser(string username)
+        {
+            using(var context= new EmployeeDBEntities11())
+            {
+                var result = (from usr in context.User
+                              join rol in context.Role on usr.Id equals rol.UserId
+                              where usr.UserName == username
+                              select rol.Role1).ToArray();
+                return result;
+            }
+           
+        }
         public bool Login(MemberShip model)
         {
             using(var context= new EmployeeDBEntities11())

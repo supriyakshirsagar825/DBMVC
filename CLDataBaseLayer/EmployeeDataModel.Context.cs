@@ -28,5 +28,6 @@ namespace CLDataBaseLayer
         public virtual DbSet<DBAddress> DBAddress { get; set; }
         public virtual DbSet<DBEmployee> DBEmployee { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
     }
 }

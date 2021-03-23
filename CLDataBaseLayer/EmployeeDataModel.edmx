@@ -27,6 +27,14 @@
           <Property Name="AddressId" Type="int" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -49,13 +57,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Role_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EmployeeDBModelStoreContainer">
           <EntitySet Name="DBAddress" EntityType="Self.DBAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DBEmployee" EntityType="Self.DBEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_DBEmployee_DBAddress" Association="Self.FK_DBEmployee_DBAddress">
             <End Role="DBAddress" EntitySet="DBAddress" />
             <End Role="DBEmployee" EntitySet="DBEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_User" Association="Self.FK_Role_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Role" EntitySet="Role" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -108,6 +133,11 @@
             <End Role="DBEmployee" EntitySet="DBEmployee" />
           </AssociationSet>
           <EntitySet Name="User" EntityType="EmployeeDBModel.User" />
+          <EntitySet Name="Role" EntityType="EmployeeDBModel.Role" />
+          <AssociationSet Name="FK_Role_User" Association="EmployeeDBModel.FK_Role_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -116,7 +146,29 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="EmployeeDBModel.FK_Role_User" FromRole="User" ToRole="Role" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Role1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="EmployeeDBModel.FK_Role_User" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Role_User">
+          <End Type="EmployeeDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="EmployeeDBModel.Role" Role="Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -152,6 +204,15 @@
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="EmployeeDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
