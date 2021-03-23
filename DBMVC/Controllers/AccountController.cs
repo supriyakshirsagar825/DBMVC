@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace DBMVC.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         EmployeeRepository repo = null;
@@ -47,6 +48,10 @@ namespace DBMVC.Controllers
             return RedirectToAction("Login");
         }
 
-
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
     }
 }
