@@ -17,13 +17,13 @@ namespace DBMVC.Controllers
             employeeRepository = new EmployeeRepository();
         }
         // GET: Employee
-        [Authorize(Roles ="admin , user")]
+        [Authorize(Roles ="admin")]
         [HttpGet]
         public ActionResult CreateEmployee()
         {
             return View();
         }
-        [Authorize(Roles = "admin , user")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult CreateEmployee(EmployeeModel model)
         {

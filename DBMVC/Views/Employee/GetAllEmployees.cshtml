@@ -7,7 +7,10 @@
 <h2>AllEmployees</h2>
 
 <p>
+    @if (User.IsInRole("admin"))
+    {
     @Html.ActionLink("Create New", "CreateEmployee")
+    }
 </p>
 <table class="table">
     <tr>

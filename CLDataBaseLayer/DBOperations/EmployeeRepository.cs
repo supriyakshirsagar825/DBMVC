@@ -29,16 +29,35 @@ namespace CLDataBaseLayer.DBOperations
             }
         }
 
-        public int SignUP(MemberShip model)
+        public int SignUP(MemberShip model, List<string> s)
         {
+            
+
             using(var context= new EmployeeDBEntities11())
             {
+               
+              
+
                 User user = new User()
                 {
                     UserName = model.UserName,
-                    Password = model.Password
+                    Password = model.Password,
+
+                    
+
                 };
+              
                 context.User.Add(user);
+                context.SaveChanges();
+                foreach (string sr in s)
+                {
+                    CLDataBaseLayer.Role r = new CLDataBaseLayer.Role();
+                 
+                    r.Role1 = sr;
+                    r.UserId = user.Id;
+                    context.Role.Add(r);
+                   
+                }
                 context.SaveChanges();
                 return user.Id;
             }
