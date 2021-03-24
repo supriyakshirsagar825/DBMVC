@@ -42,23 +42,14 @@ namespace DBMVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult SignUP(MemberShip model,bool admin, bool user, bool customer)
+        public ActionResult SignUP(MemberShip model, bool admin, bool user, bool customer)
         {
             List<string> s = new List<string>();
-            if (admin == true) {
-                s.Add("admin");
-            }
-            if (user == true) {
-                s.Add("user"); }
+            if (admin == true) s.Add("admin");
+            if (user == true) s.Add("user");
+            if (customer == true) s.Add("customer");
 
-            if (customer == true)
-            {
-                s.Add("customer");
-
-            }
-
-            
-                        var result = repo.SignUP(model,s);
+            var result = repo.SignUP(model, s);
             return RedirectToAction("Login");
         }
 

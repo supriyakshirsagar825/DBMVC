@@ -1,14 +1,17 @@
-﻿using System;
+﻿using DBMVC.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace DBMVC.Controllers
 {
-    [AllowAnonymous]
+  [AllowAnonymous]
     public class HomeController : Controller
     {
+       /* [SupriyaAuthenticationFilters]*/
         public ActionResult Index()
         {
             return View();
