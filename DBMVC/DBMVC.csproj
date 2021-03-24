@@ -134,7 +134,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialViewDemoController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Filters\SupriyaFilters.cs" />
+    <Compile Include="Filters\SupriyaActionFilter.cs" />
+    <Compile Include="Filters\SupriyaAuthenticationFilters.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
