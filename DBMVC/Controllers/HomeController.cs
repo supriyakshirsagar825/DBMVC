@@ -8,13 +8,15 @@ using System.Web.Mvc;
 
 namespace DBMVC.Controllers
 {
-  /* [AllowAnonymous] */
+   [AllowAnonymous] 
     public class HomeController : Controller
     {
-       /* [SupriyaAuthenticationFilters]*/
-       [SupriyaActionFilter]
+        /* [SupriyaAuthenticationFilters]
+        [SupriyaActionFilter] */
+        /* [SupriyaException] */
         public ActionResult Index()
         {
+            // return View("supriya");
             return View();
         }
         

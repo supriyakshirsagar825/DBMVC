@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace DBMVC.Filters
 {
-    public abstract class SupriyaActionFilter : ActionFilterAttribute // FilterAttribute, IActionFilter
+    public  class SupriyaActionFilter : ActionFilterAttribute // FilterAttribute, IActionFilter
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
