@@ -7,8 +7,10 @@ namespace DBMVC
     {
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
-        {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+       {
+
+
+                  bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -25,6 +27,21 @@ namespace DBMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            //Bundle b = new ScriptBundle("~/Supriya/Bundle/js");
+            //b.Include("~/Areas/Admin/NewFolder1/one.js",
+            //    "~/Areas/Admin/NewFolder1/two.js",
+            //    "~/Areas/Admin/NewFolder1/three.js",
+            //    "~/Areas/Admin/NewFolder1/four.js",
+            //    "~/Areas/Admin/NewFolder1/five.js",
+            //    "~/Areas/Admin/NewFolder1/six.js");
+            //bundles.Add(b);
+
+            bundles.Add(new ScriptBundle("~/Supriya1/Bundle/js").IncludeDirectory("~/Areas/Admin/NewFolder1", "*.js"));
+            bundles.Add(new StyleBundle("~/SupriyaK/Bundle/style").IncludeDirectory("~/Areas/Admin/NewFolder1", "*.css"));
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
+

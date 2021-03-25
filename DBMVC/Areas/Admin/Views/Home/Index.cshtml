@@ -3,5 +3,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2> Admin Index</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Supriya1/Bundle/js")
+@Styles.Render("~/SupriyaK/Bundle/style");
+
+<h1> Admin Index :Bundling and Minification in MVC </h1>
+<p>This is para 1</p>
+<div>
+    this is div part
+    <input type="button" name="btn1" value="click here"/>
+</div>
+
+<li>@Html.ActionLink("Home Billing", "Index", "Home", new { area = "Billing" }, null)</li>
+
+<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
+<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, null)</li>
 
