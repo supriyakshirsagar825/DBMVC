@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CLModelLayer;
 using CLDataBaseLayer.DBOperations;
+using DBMVC.Models;
 
 namespace DBMVC.Controllers
 {
@@ -38,7 +39,14 @@ namespace DBMVC.Controllers
             }
             return View();
         }
-
+         [Authorize(Roles = "admin")]
+        // [HttpPost]
+        [HttpPost]
+        public ActionResult GetAllEmployeesForModelBinder([ModelBinder(typeof(SupriyaModelBinder))] EmployeeModel model)
+        {
+            var result = model;
+            return View(result);
+        }
         public ActionResult GetAllEmployees()
         {
             var result = employeeRepository.GetAllEmployees();

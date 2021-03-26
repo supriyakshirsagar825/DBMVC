@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DBMVC.Models;
+using CLModelLayer;
 
 namespace DBMVC.Areas.Admin.Controllers
 {
@@ -13,5 +15,6 @@ namespace DBMVC.Areas.Admin.Controllers
         {
             return View();
         }
+     
     }
 }
