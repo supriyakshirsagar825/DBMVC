@@ -13,8 +13,10 @@ namespace DBMVC.Controllers
     public class EmployeeController : Controller
     {
         EmployeeRepository employeeRepository = null;
-        public EmployeeController()
+        IEmployeeExperience _employeeExperience;
+        public EmployeeController( IEmployeeExperience employeeExperience)
         {
+            _employeeExperience = employeeExperience;
             employeeRepository = new EmployeeRepository();
         }
         // GET: Employee
@@ -22,6 +24,7 @@ namespace DBMVC.Controllers
         [HttpGet]
         public ActionResult CreateEmployee()
         {
+           var res= _employeeExperience.IsExperienced();
             return View();
         }
         [Authorize(Roles = "admin")]

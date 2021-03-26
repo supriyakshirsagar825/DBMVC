@@ -9,7 +9,7 @@ namespace CLDataBaseLayer.DBOperations
 {
     public class EmployeeRepository
     {
-        public  string[] GetRolesForUser(string username)
+        public string[] GetRolesForUser(string username)
         {
             using(var context= new EmployeeDBEntities11())
             {

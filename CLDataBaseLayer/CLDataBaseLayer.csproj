@@ -63,7 +63,9 @@
     <Compile Include="DBEmployee.cs">
       <DependentUpon>EmployeeDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBOperations\EmployeeExperience.cs" />
     <Compile Include="DBOperations\EmployeeRepository.cs" />
+    <Compile Include="DBOperations\IEmployeeExperience.cs" />
     <Compile Include="EmployeeDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
