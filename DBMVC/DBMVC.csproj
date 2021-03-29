@@ -156,10 +156,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeModelsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExceptionHandlingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartialViewDemoController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ValueController.cs" />
     <Compile Include="Filters\SupriyaActionFilter.cs" />
@@ -247,11 +249,17 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Employee\GetAllEmployeesForModelBinder.cshtml" />
+    <Content Include="Views\EmployeeModels\Create.cshtml" />
+    <Content Include="Views\EmployeeModels\Delete.cshtml" />
+    <Content Include="Views\EmployeeModels\Details.cshtml" />
+    <Content Include="Views\EmployeeModels\Edit.cshtml" />
+    <Content Include="Views\EmployeeModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Billing\Data\" />
+    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

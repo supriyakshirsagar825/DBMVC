@@ -20,11 +20,14 @@ namespace DBMVC.Controllers
             employeeRepository = new EmployeeRepository();
         }
         // GET: Employee
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult CreateEmployee()
         {
-           var res= _employeeExperience.IsExperienced();
+            var res = _employeeExperience.IsExperienced();
+            ViewBag.listcountry = new List<string>() { "India", "USA", "Japan", "Canada" };
+            ViewBag.listcity = new List<string>() { "Mumbai", "Louisville", "okasa", "Toranto" };
+            ViewBag.liststate = new List<string>() { "MH", "KY", "JP", "TO" };
             return View();
         }
         [Authorize(Roles = "admin")]
@@ -40,6 +43,9 @@ namespace DBMVC.Controllers
                     ViewBag.EmployeeMsssage ="Employee With Id "+ id +" Added ";
                 }
             }
+            ViewBag.listcountry = new List<string>() { "India", "USA", "Japan", "Canada" };
+            ViewBag.listcity = new List<string>() { "Mumbai", "Louisville", "okasa", "Toranto" };
+            ViewBag.liststate = new List<string>() { "MH", "KY", "JP", "TO" };
             return View();
         }
          [Authorize(Roles = "admin")]

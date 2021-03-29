@@ -29,5 +29,9 @@ namespace CLDataBaseLayer
         public virtual DbSet<DBEmployee> DBEmployee { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+
+        public System.Data.Entity.DbSet<CLModelLayer.EmployeeModel> EmployeeModels { get; set; }
+
+        public System.Data.Entity.DbSet<CLModelLayer.AddressModel> AddressModels { get; set; }
     }
 }
