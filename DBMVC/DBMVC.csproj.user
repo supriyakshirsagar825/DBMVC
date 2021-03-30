@@ -18,7 +18,7 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_IsAsyncSelected>True</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <WebStackScaffolding_AreaDialogWidth>600</WebStackScaffolding_AreaDialogWidth>
     <WebStackScaffolding_DbContextTypeFullName>CLDataBaseLayer.EmployeeDBEntities11</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>

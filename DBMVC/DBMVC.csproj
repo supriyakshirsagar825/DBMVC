@@ -170,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\student.cs" />
     <Compile Include="Models\SupriyaModelBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebRoleProvider.cs" />
@@ -254,12 +255,13 @@
     <Content Include="Views\EmployeeModels\Details.cshtml" />
     <Content Include="Views\EmployeeModels\Edit.cshtml" />
     <Content Include="Views\EmployeeModels\Index.cshtml" />
+    <Content Include="Views\Student\create.cshtml" />
+    <Content Include="Views\Student\create1.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\File\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Billing\Data\" />
-    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
