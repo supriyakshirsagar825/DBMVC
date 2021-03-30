@@ -1,0 +1,28 @@
+﻿@using DBMVC.Models
+@*@model StudentPersonVM*@
+@*@model dynamic*@
+@model Tuple<List<person>, List<student>, string>
+@{
+    ViewBag.Title = "Index";
+}
+ 
+<h2>Index @Model.Item3</h2>
+<p>
+    @foreach (var item in @*Model.liststudent*@ Model.Item2)
+    {
+        @item.city  <p> @item.name </p>
+    }
+</p>
+<p>
+    @foreach (var item in @*Model.listperson*@ Model.Item1)
+    {
+    <h3>@item.email </h3>
+    <h4>@item.name</h4>
+    }
+</p>
+
+<div>
+    @{Html.RenderAction("PartialViewResultStudent");}
+    @{ Html.RenderAction("PartialViewResultPerson");}
+
+</div>

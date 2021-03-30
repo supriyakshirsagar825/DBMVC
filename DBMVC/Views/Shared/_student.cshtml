@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DBMVC.Models.student>
+@{
+    ViewBag.Title = "_student";
+}
+
+<h2>_student</h2>
+
+@foreach (var item in Model)
+{
+    <h2>@( item.city + "  "+ item.name)</h2>
+}

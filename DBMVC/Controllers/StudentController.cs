@@ -9,6 +9,8 @@ using CLDataBaseLayer.DBOperations;
 using System.Threading.Tasks;
 using DBMVC.Models;
 using System.IO;
+using System.Dynamic;
+
 namespace DBMVC.Controllers
 {
     [AllowAnonymous]
@@ -19,9 +21,53 @@ namespace DBMVC.Controllers
         // GET: Student
         public ActionResult Index()
         {
-           
-            return View();
+            //View Model example
+            //StudentPersonVM studentPersonVM = new StudentPersonVM();
+            //studentPersonVM.listperson = GetPeopleList();
+            //studentPersonVM.liststudent = GetStudentsList();
+            //return View(studentPersonVM);
+
+            //dynamic data passing
+            //dynamic studentPerson = new ExpandoObject();
+            //studentPerson.listperson = GetPeopleList();
+            //studentPerson.liststudent = GetStudentsList();
+            //return View(studentPerson);
+
+            var model = new Tuple<List<person> , List<student>, string>(GetPeopleList(), GetStudentsList(),"supriya");
+            return View(model);
+
         }
+
+        public PartialViewResult PartialViewResultStudent()
+        {
+            return PartialView("_student", GetStudentsList());
+        }
+
+        public PartialViewResult PartialViewResultPerson()
+        {
+            return PartialView("_person", GetPeopleList());
+        }
+
+        public List<person> GetPeopleList()
+        {
+            return new List<person>()
+            {
+                new person{ id=1, name="supriya", email="supriya@gamil.com"},
+                new person{ id=2, name="shubham" ,email="shubham@gmail.com"}
+            };
+        }
+        public List<student> GetStudentsList()
+        {
+            return new List<student>()
+            {
+                new student{ name="shreddha", city=1},
+                new student{ name="seema" , city=2}
+
+            };
+        }
+
+
+
         public ActionResult create()
         {
             ViewBag.city = city.getcitylist();
