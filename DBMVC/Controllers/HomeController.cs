@@ -19,7 +19,7 @@ namespace DBMVC.Controllers
             // return View("supriya");
             return View();
         }
-        
+        ////[NonAction]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

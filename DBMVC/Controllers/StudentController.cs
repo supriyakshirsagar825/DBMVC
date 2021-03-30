@@ -37,12 +37,12 @@ namespace DBMVC.Controllers
             return View(model);
 
         }
-
+        [ChildActionOnly]
         public PartialViewResult PartialViewResultStudent()
         {
             return PartialView("_student", GetStudentsList());
         }
-
+        [ChildActionOnly]
         public PartialViewResult PartialViewResultPerson()
         {
             return PartialView("_person", GetPeopleList());
