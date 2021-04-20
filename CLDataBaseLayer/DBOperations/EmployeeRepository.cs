@@ -158,33 +158,37 @@ namespace CLDataBaseLayer.DBOperations
         {
             using(var context= new EmployeeDBEntities11())
             {
-                var employee = new DBEmployee();
-                employee.Id = Id;
-             
-                DBAddress add = new DBAddress();
-                add.Id = addid;
+                //var employee = new DBEmployee();
+                //employee.Id = Id;
+                //DBAddress add = new DBAddress();
+                //if (addid != 0)
+                //{
+
+                //    add.Id = addid;
+                //}
 
 
-              
-                context.Entry(employee).State = System.Data.Entity.EntityState.Deleted;
-                //context.Entry(employee.DBAddress).State = System.Data.Entity.EntityState.Deleted;
-                context.SaveChanges();
-                context.Entry(add).State = System.Data.Entity.EntityState.Deleted;
-                context.SaveChanges();
-                return true;
-                //var employee = context.tblEmployee.FirstOrDefault(x => x.Id == Id);
-                //if(employee!=null)
-                //{
-                //    context.tblAddress.Remove(employee.tblAddress);
-                //    context.tblEmployee.Remove(employee);
-                //    context.SaveChanges();
-                //    return true;
-                //}
-                //else
-                //{
-                //    return false;
-                //}
+
+                //context.Entry(employee).State = System.Data.Entity.EntityState.Deleted;
+                ////context.Entry(employee.DBAddress).State = System.Data.Entity.EntityState.Deleted;
+                //context.SaveChanges();
+                //context.Entry(add).State = System.Data.Entity.EntityState.Deleted;
+                //context.SaveChanges();
+                //return true;
+                var employee = context.DBEmployee.FirstOrDefault(x => x.Id == Id);
+                if (employee != null)
+                {
+                    context.DBAddress.Remove(employee.DBAddress);
+                    context.DBEmployee.Remove(employee);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
+
     }
 }

@@ -17,16 +17,73 @@ namespace WebApiProject.Controllers
             repository = new EmployeeRepository();
         }
         [HttpGet]
-        public IEnumerable<EmployeeModel> GetEmployees()
+        public IEnumerable<EmployeeModel> Get()
         {
             return repository.GetAllEmployees();
         }
 
         [HttpGet]
-        public EmployeeModel GetEmployee(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return repository.GetEmployee(id);
+            var entity= repository.GetEmployee(id);
+            if(entity!=null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, entity);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Employee With Id " + id.ToString() + " Not Found");
+            }
+        }
+        [HttpPost]
+        public HttpResponseMessage Post(EmployeeModel employee)
+        {
+            try
+            {
+                repository.AddEmployee(employee);
+                var message = Request.CreateResponse(HttpStatusCode.Created, employee);
+                message.Headers.Location = new Uri(Request.RequestUri +"id......"+ employee.Id);
+                return message;
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
+        [HttpDelete]
+        public HttpResponseMessage Delete(int Id)
+        {
+           bool val= repository.DeleteEmployeeByID(Id,0);
+            if(val==true)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, val);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Employee with Id " + Id.ToString() + " Not found in record");
+            }
+        }
+
+        public HttpResponseMessage Put(int Id, [FromBody] EmployeeModel employee)
+        {
+            try
+            {
+                bool val = repository.UpdateEmployee(Id, employee);
+                if (val == true)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, employee);
+
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Employee with id " + Id.ToString() + " Not found");
+                }
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
     }
 }
