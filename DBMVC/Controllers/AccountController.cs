@@ -13,9 +13,20 @@ namespace DBMVC.Controllers
     public class AccountController : Controller
     {
         EmployeeRepository repo = null;
+        private ILog _ilog;
         public AccountController()
         {
+            _ilog = Log.GetInstance;
+
             repo = new EmployeeRepository();
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            // base.OnException(filterContext);
+            _ilog.LogException(filterContext.Exception.ToString());
+            filterContext.ExceptionHandled = true;
+            this.View("Error").ExecuteResult(this.ControllerContext);
         }
         // GET: Account
         public ActionResult Login()

@@ -66,6 +66,8 @@
     <Compile Include="DBOperations\EmployeeExperience.cs" />
     <Compile Include="DBOperations\EmployeeRepository.cs" />
     <Compile Include="DBOperations\IEmployeeExperience.cs" />
+    <Compile Include="DBOperations\ILog.cs" />
+    <Compile Include="DBOperations\Log.cs" />
     <Compile Include="EmployeeDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
