@@ -17,9 +17,22 @@ namespace WebApiProject.Controllers
             repository = new EmployeeRepository();
         }
         [HttpGet]
-        public IEnumerable<EmployeeModel> Get()
+        public IEnumerable<EmployeeModel> GetEmployee()
         {
             return repository.GetAllEmployees();
+        }
+        [HttpGet]
+        public HttpResponseMessage Get(string gender)
+        {
+            var listemp= repository.GetEmployeeByGender(gender);
+            if(listemp!=null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, listemp);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Employee found");
+            }
         }
 
         [HttpGet]
