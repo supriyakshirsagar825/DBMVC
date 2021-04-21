@@ -14,14 +14,15 @@
                     type: 'GET',
                     url: '/api/Employee/',
                     contentType: "application/json; charset=utf-8", 
-                    dataType: 'json',
+                    // dataType: 'jsonp',
+                    dataType:'json',
                     success: function (data) {
                         console.log(data);
                         console.log(data.d);
 
                         ulemp.empty();
                         $.each(data, function (index, val) {
-                            var fullname = val.firstName + "---" + val.lastName;
+                            var fullname = val.FirstName + "---" + val.LastName;
                             ulemp.append('<li>' + fullname + '</li>');
                         });
                     }
