@@ -97,6 +97,32 @@ namespace CLDataBaseLayer.DBOperations
                 return result;
             }
         }
+
+        public List<EmployeeModel> GetEmployeeByGender(string gender)
+        {
+            using (var context = new EmployeeDBEntities11())
+            {
+                var result = context.DBEmployee.Select(x => new EmployeeModel()
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Salary = x.Salary,
+                    AddressId = x.AddressId,
+                    Gender = x.Gender,
+                    Address = new AddressModel()
+                    {
+                        Id = x.DBAddress.Id,
+                        AddressLine1 = x.DBAddress.AddressLine1,
+                        AddressLine2 = x.DBAddress.AddressLine2,
+                        City = x.DBAddress.City,
+                        Country = x.DBAddress.Country,
+                        State = x.DBAddress.State
+                    }
+                }).Where(x=>x.Gender==gender).ToList();
+                return result;
+            }
+        }
         public EmployeeModel GetEmployee(int Id)
         {
             using (var context = new EmployeeDBEntities11())

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using CLDataBaseLayer.DBOperations;
 using CLModelLayer;
 
 namespace WebApiProject.Controllers
 {
+    [EnableCorsAttribute("*","*","*")]
     public class EmployeeController : ApiController
     {
         EmployeeRepository repository = null;
@@ -17,13 +20,16 @@ namespace WebApiProject.Controllers
             repository = new EmployeeRepository();
         }
         [HttpGet]
+       // [BasicAuthentatication]
         public IEnumerable<EmployeeModel> GetEmployee()
         {
             return repository.GetAllEmployees();
         }
         [HttpGet]
+        [BasicAuthentatication]
         public HttpResponseMessage Get(string gender)
         {
+            string UserName= Thread.CurrentPrincipal.Identity.Name;
             var listemp= repository.GetEmployeeByGender(gender);
             if(listemp!=null)
             {

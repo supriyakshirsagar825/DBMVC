@@ -6,15 +6,21 @@
     <script src="Scripts/jquery-3.4.1.js"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function () {
             var ulemp = $('#ulemployee');
-
+           
             $('#btnemployee').click(function () {
+                var username = $('#txtusername').val();
+                var password = $('#txtpassword').val();
+                console.log(username + ":" + password);
                 $.ajax({
                     type: 'GET',
-                    url: '/api/Employee/',
+                    url: '/api/Employee?gender=female',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(username + ":" + password)
+                    },
                     contentType: "application/json; charset=utf-8", 
-                    // dataType: 'jsonp',
                     dataType:'json',
                     success: function (data) {
                         console.log(data);
@@ -25,7 +31,14 @@
                             var fullname = val.FirstName + "---" + val.LastName;
                             ulemp.append('<li>' + fullname + '</li>');
                         });
+                    },
+                    complete: function (jqXHR) {
+                        if (jqXHR.status == '401') {
+                            ulemp.empty();
+                            ulemp.append('<li>' + jqXHR.status + ":" + jqXHR.statusText + '</li>');
+                        }
                     }
+
                 });
             });
         });
@@ -33,6 +46,8 @@
     </script>
 </head>
 <body>
+    <input type="text" id="txtusername" />
+    <input type="password" id="txtpassword" />
     <input type="button" value="Get Employee" id="btnemployee" />
     <input type="button" value="Clear" id="clear" />
     <ul id="ulemployee"></ul>
